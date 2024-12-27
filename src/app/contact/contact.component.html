@@ -1,0 +1,43 @@
+<div class="contact-form">
+  <h1>Contact Us</h1>
+  <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input id="name" type="text" formControlName="name" />
+      <!-- Show error message if the field is touched and invalid -->
+      <div *ngIf="contactForm.get('name')?.touched && contactForm.get('name')?.invalid" class="error">
+        Name is required.
+      </div>
+    </div>
+    
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input id="email" type="email" formControlName="email" />
+      <!-- Show error message if the field is touched and invalid -->
+      <div *ngIf="contactForm.get('email')?.touched && contactForm.get('email')?.invalid" class="error">
+        <div *ngIf="contactForm.get('email')?.hasError('required')">Email is required.</div>
+        <div *ngIf="contactForm.get('email')?.hasError('email')">Please enter a valid email address.</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="message">Message</label>
+      <textarea id="message" formControlName="message"></textarea>
+      <!-- Show error message if the field is touched and invalid -->
+      <div *ngIf="contactForm.get('message')?.touched && contactForm.get('message')?.invalid" class="error">
+        Message is required.
+      </div>
+    </div>
+
+    <!-- Submit button should be disabled if the form is invalid -->
+    <button type="submit" [disabled]="contactForm.invalid">Submit</button>
+  </form>
+</div>
+
+<div *ngIf="showMessage" class="modal-overlay">
+  <div class="modal-content">
+    <p>{{ successMessage }}</p>
+    <button class="button-ok" (click)="close()">OK</button>
+  </div>
+</div>

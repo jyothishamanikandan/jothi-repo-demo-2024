@@ -1,0 +1,82 @@
+
+.navbar {
+  background-color: #007bff;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  position: relative; /* To position the mobile menu properly */
+
+  .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+  }
+
+  ul {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+
+    li {
+      a {
+        color: white;
+        font-size: 1rem;
+        padding: 8px 16px;
+        border-radius: 4px;
+        transition: background-color 0.3s ease, color 0.3s ease;
+
+        &:hover {
+          background-color: darken(#007bff, 10%);
+        }
+
+        &.active-link {
+          background-color: darken(#007bff, 15%); /* Change the active background */
+          font-weight: bold; /* Bold text for active link */
+        }
+      }
+    }
+  }
+
+  /* Hamburger Menu for Mobile */
+  .hamburger-menu {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .hamburger-menu {
+      display: block;
+      cursor: pointer;
+      font-size: 1.5rem;
+      color: white;
+    }
+
+    ul {
+      display: none; /* Hide the menu by default */
+      width: 100%;
+      flex-direction: column;
+      background-color: #007bff;
+      position: absolute;
+      top: 60px; /* Adjust this based on navbar height */
+      left: 0;
+      padding: 0;
+
+      li {
+        text-align: center;
+        width: 100%;
+
+        a {
+          padding: 15px;
+          display: block;
+        }
+      }
+    }
+
+    &.active {
+      ul {
+        display: flex; /* Show menu when active */
+      }
+    }
+  }
+}

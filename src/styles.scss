@@ -1,0 +1,44 @@
+/* styles.scss */
+
+/* Color Variables */
+$primary-color: #007bff;
+$secondary-color: #f4f4f4;
+$button-hover-color: #0056b3;
+$card-bg-color: #ffffff;
+$border-color: #ddd;
+$text-color: #333;
+$shadow-color: rgba(0, 0, 0, 0.1);
+
+/* Font */
+$font-family: 'Arial', sans-serif;
+$heading-font: 'Roboto', sans-serif;
+
+/* Body and Layout */
+body {
+  font-family: $font-family;
+  background-color: #f9f9f9;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3 {
+  font-family: $heading-font;
+  color: $text-color;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid $border-color;
+  margin: 20px 0;
+}
