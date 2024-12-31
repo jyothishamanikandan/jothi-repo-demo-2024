@@ -8,9 +8,10 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { ContactComponent } from './contact/contact.component';
 import { AppRoutingModule } from './app.routes';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
-    declarations: [AppComponent, NavbarComponent, HomeComponent, ContactComponent],
+    declarations: [AppComponent, NavbarComponent, HomeComponent, ContactComponent, FooterComponent],
     imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule, ReactiveFormsModule],
     providers: [],
     bootstrap: [AppComponent],

@@ -8,12 +8,42 @@
   margin: 40px auto;
   display: flex;
   flex-direction: column;
+  background: linear-gradient(211deg, rgba(255, 242, 210, 0.6) 11.09%, rgba(232, 217, 255, 0.48) 83.68%);
+  animation: fadeInGlow 1.5s ease-in-out;
+
+  @keyframes fadeInGlow {
+    from {
+      opacity: 0;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0);
+    }
+
+    to {
+      opacity: 1;
+      box-shadow: 0 4px 20px rgba(0, 123, 255, 0.2);
+    }
+  }
 
   h1 {
-    font-size: 2rem;
+    font-size: 2.5rem;
     text-align: center;
     margin-bottom: 20px;
     color: #007bff;
+    animation: shimmer 2s linear infinite;
+
+    @keyframes shimmer {
+      0% {
+        background-position: -300px 0;
+      }
+
+      100% {
+        background-position: 300px 0;
+      }
+    }
+
+    background: linear-gradient(90deg, #007bff, #00d4ff, #007bff);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
   .form-group {
@@ -33,10 +63,48 @@
     border: 1px solid #ddd;
     border-radius: 8px;
     margin-top: 5px;
-    transition: #ddd 0.3s ease;
+    transition: border-color 0.3s ease, transform 0.3s;
 
     &:focus {
       border-color: #007bff;
+      box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+      animation: pulse 1.2s infinite;
+    }
+
+    &:invalid {
+      animation: shake 0.5s ease-in-out;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.02);
+      }
+    }
+
+    @keyframes shake {
+
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+
+      25% {
+        transform: translateX(-4px);
+      }
+
+      50% {
+        transform: translateX(4px);
+      }
+
+      75% {
+        transform: translateX(-4px);
+      }
     }
   }
 
@@ -53,32 +121,83 @@
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-
+    position: relative;
+    overflow: hidden;
+    animation: buttonPulse 1.5s infinite;
+  
     &:hover {
       background-color: #0056b3;
     }
-
+  
+    &:before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.4s ease, height 0.4s ease;
+    }
+  
+    &:hover:before {
+      width: 200%;
+      height: 200%;
+    }
+  
     &:disabled {
       background-color: #cccccc;
+      color: #666666;
       cursor: not-allowed;
+      animation: none;
+      box-shadow: none;
+      &:hover {
+        background-color: #cccccc;
+      }
+    }
+  
+    @keyframes buttonPulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
     }
   }
+  
 
   .error {
     color: red;
     font-size: 0.9rem;
     margin-top: 5px;
+    animation: vibrate 0.3s ease-in-out;
+
+    @keyframes vibrate {
+
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+
+      25% {
+        transform: translateX(-2px);
+      }
+
+      50% {
+        transform: translateX(2px);
+      }
+
+      75% {
+        transform: translateX(-2px);
+      }
+    }
   }
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .contact-form {
-    padding: 20px;
-  }
-}
-
+/* Modal Overlay */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -90,14 +209,40 @@
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  animation: fadeIn 0.5s ease-in;
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
 }
 
+/* Modal Content */
 .modal-content {
   background-color: white;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   text-align: center;
+  transform: translateY(-50px);
+  animation: slideDown 0.5s ease-in-out;
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-50px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 }
 
 .button-ok {
@@ -107,8 +252,10 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 
   &:hover {
     background-color: #0056b3;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
   }
 }
