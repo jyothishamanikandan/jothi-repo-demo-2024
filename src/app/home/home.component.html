@@ -16,23 +16,31 @@
   <div class="section-header">
     <h2>Our Services</h2>
     <p>What we offer to our customers</p>
-
-  
   </div>
   <div class="cards">
-    <div class="card" *ngFor="let service of services" (click)="openModal(service)">
+    <div class="card" *ngFor="let service of services; let i = index" [style.--card-index]="i">
       <h3>{{ service.name }}</h3>
       <p>{{ service.description }}</p>
     </div>
   </div>
 </section>
 
-
-<div class="modal" *ngIf="isModalOpen" (click)="closeModal($event)">
-  <div class="modal-content" (click)="$event.stopPropagation()">
-    <span class="close" (click)="closeModal()">&times;</span>
-    <h3>{{ selectedService?.name }}</h3>
-    <p>{{ selectedService?.description }}</p>
-    <p>{{ selectedService?.features}}</p>
+<section class="static-content">
+  <div class="content">
+    <h2>Why Choose Us?</h2>
+    <p>
+      We provide top-notch services to cater to your business needs. Our
+      experienced team ensures the best quality and customer satisfaction.
+    </p>
   </div>
-</div>
+  <div class="highlight">
+    <div class="highlight-box">
+      <h3>Quality Assurance</h3>
+      <p>Delivering the best services with unmatched quality.</p>
+    </div>
+    <div class="highlight-box">
+      <h3>Customer Support</h3>
+      <p>24/7 support to address your concerns promptly.</p>
+    </div>
+  </div>
+</section>
