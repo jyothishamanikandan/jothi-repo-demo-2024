@@ -18,7 +18,7 @@
     <p>What we offer to our customers</p>
   </div>
   <div class="cards">
-    <div class="card" *ngFor="let service of services; let i = index" [style.--card-index]="i">
+    <div class="card" *ngFor="let service of services; let i = index" [style.--card-index]="i"  (click)="openModal(service)">
       <h3>{{ service.name }}</h3>
       <p>{{ service.description }}</p>
     </div>
@@ -44,3 +44,12 @@
     </div>
   </div>
 </section>
+
+<div class="modal" *ngIf="isModalOpen" (click)="closeModal($event)">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <span class="close" (click)="closeModal()">&times;</span>
+    <h3>{{ selectedService?.name }}</h3>
+    <p>{{ selectedService?.description }}</p>
+    <p>{{ selectedService?.features}}</p>
+  </div>
+</div>
