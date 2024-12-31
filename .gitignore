@@ -1,9 +1,45 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependency directories
 node_modules/
+bower_components/
 
+# Production build output
 dist/
+out-tsc/    
 
+# Angular-specific
 .angular/
 
-*.log
+# Environment files
+src/environments/environment.*.ts
+*.env
 
-.env
+# IDEs and editors
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+tmp/
+*.swp
+*.bak
+*.tmp
+
+# Compiled TypeScript
+*.tsbuildinfo
+
+# Test and Coverage
+coverage/
+karma-results/
+junit-results/

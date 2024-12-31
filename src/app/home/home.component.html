@@ -1,8 +1,16 @@
-<section class="hero">
-  <h1>Welcome to Our Business</h1>
-  <p>Your tagline or mission statement</p>
-  <button (click)="navigateToHome()">Get Started</button>
+<!-- home.component.html -->
+<section class="home" (mousemove)="trackMouse($event)">
+  <!-- SVG Hero Section -->
+  <div class="hero" [ngStyle]="{ 'background-color': dynamicBackgroundColor }">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="150" height="150" class="hero-icon">
+      <circle cx="60" cy="60" r="50" fill="none" stroke="#007bff" stroke-width="10" />
+      <path d="M 40,60 Q 60,30 80,60" fill="none" stroke="#007bff" stroke-width="10" />
+    </svg>
+    <h1>Welcome to Our Home Page</h1>
+    <p>{{ greetingMessage }}</p>
+  </div>
 </section>
+
 
 <section class="section">
   <div class="section-header">
@@ -12,9 +20,19 @@
   
   </div>
   <div class="cards">
-    <div class="card" *ngFor="let service of services">
+    <div class="card" *ngFor="let service of services" (click)="openModal(service)">
       <h3>{{ service.name }}</h3>
       <p>{{ service.description }}</p>
     </div>
   </div>
 </section>
+
+
+<div class="modal" *ngIf="isModalOpen" (click)="closeModal($event)">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <span class="close" (click)="closeModal()">&times;</span>
+    <h3>{{ selectedService?.name }}</h3>
+    <p>{{ selectedService?.description }}</p>
+    <p>{{ selectedService?.features}}</p>
+  </div>
+</div>
